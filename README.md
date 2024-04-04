@@ -1,12 +1,12 @@
-# pansible
+# pantsible
 
-Ansible with an embedded Python Interpreter... Also, this project uses [Pants](https://pantsbuild.org)...
+[Ansible](https://www.ansible.com/) with an embedded Python Interpreter... Also, this project uses [Pants](https://pantsbuild.org)...
 
 ## Why?
 
 To solve a mildly annoying chicken and egg problem.
 
-When I provision a Mac, I want to use my Ansible playbooks to do it. So I need to [install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html), but to install Ansible, I need to have [pipx](https://pipx.pypa.io/stable/installation/) installed. To install `pipx` I need to have `homebrew` installed.
+When I provision a Mac, I want to use my Ansible playbooks to do it. So I need to [install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html), but to install Ansible, I need to have [pipx](https://pipx.pypa.io/stable/installation/) installed. To install `pipx` I need to have [homebrew](https://brew.sh) installed.
 
 But I want my Ansible playbook to install `homebrew` for me.
 

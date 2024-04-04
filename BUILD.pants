@@ -13,7 +13,7 @@ pex_binary(
 )
 
 scie_binary(
-    name="pansible",
+    name="pantsible",
     dependencies=[":pex"],
     platforms=["linux-x86_64", "macos-aarch64"],
     lift="lift.toml",

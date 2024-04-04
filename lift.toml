@@ -1,5 +1,5 @@
 [lift]
-name = "pansible"
+name = "pantsible"
 description = "Ansible with an embedded Python interpreter."
 platforms = [
 #    "linux-aarch64",
