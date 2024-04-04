@@ -1,0 +1,43 @@
+[lift]
+name = "pansible"
+description = "Ansible with an embedded Python interpreter."
+platforms = [
+#    "linux-aarch64",
+    "linux-x86_64",
+    "macos-aarch64",
+#    "macos-x86_64",
+]
+
+[[lift.interpreters]]
+id = "cpython"
+provider = "PythonBuildStandalone"
+release = "20240224"
+version = "3.11.8"
+
+[[lift.files]]
+name = ":pex"
+
+[[lift.commands]]
+exe = "{scie.bindings.venv}/venv/bin/ansible"
+# TODO: Update to pants-plugin required, as "args" are optional 
+args = []
+
+[[lift.bindings]]
+name = "venv"
+description = "Installs the app into a venv and pre-compiles .pyc"
+exe = "#{cpython:python}"
+args = [
+    "{:pex}",
+    "venv",
+    "--bin-path",
+    "prepend",
+    "--compile",
+    "--rm",
+    "all",
+    "{scie.bindings}/venv",
+]
+
+[lift.bindings.env.default]
+"=PATH" = "{cpython}/python/bin:{scie.env.PATH}"
+"PEX_TOOLS" = "1"
+"PEX_ROOT" = "{scie.bindings}/pex_root"

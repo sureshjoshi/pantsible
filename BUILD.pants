@@ -1,0 +1,20 @@
+python_requirements(name="reqs")
+
+pex_binary(
+    name="pex",
+    dependencies=[
+        ":reqs#ansible-core",
+    ],
+    include_tools=True,
+    platforms=[
+        "linux-x86_64-cp-311-cp311",
+        "macosx-13.3-arm64-cp-311-cp311",
+    ],
+)
+
+scie_binary(
+    name="pansible",
+    dependencies=[":pex"],
+    platforms=["linux-x86_64", "macos-aarch64"],
+    lift="lift.toml",
+)

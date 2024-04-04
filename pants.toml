@@ -1,0 +1,17 @@
+[GLOBAL]
+pants_version = "2.19.1"
+pantsd = true
+pants_ignore_use_gitignore = false
+plugins = ["robotpajamas.pants.scie==0.0.2"]
+
+backend_packages = [
+    "pants.backend.python",
+    "experimental.scie"
+]
+build_patterns = ["BUILD.pants", "BUILD"]
+
+[python]
+interpreter_constraints = ["==3.11.*"]
+
+[anonymous-telemetry]
+enabled = false
