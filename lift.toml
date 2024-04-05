@@ -22,6 +22,46 @@ exe = "{scie.bindings.venv}/venv/bin/ansible"
 # TODO: Update to pants-plugin required, as "args" are optional 
 args = []
 
+[[lift.commands]]
+name = "config"
+exe = "{scie.bindings.venv}/venv/bin/ansible-config"
+args = []
+
+[[lift.commands]]
+name = "console"
+exe = "{scie.bindings.venv}/venv/bin/ansible-console"
+args = []
+
+[[lift.commands]]
+name = "doc"
+exe = "{scie.bindings.venv}/venv/bin/ansible-doc"
+args = []
+
+[[lift.commands]]
+name = "galaxy"
+exe = "{scie.bindings.venv}/venv/bin/ansible-galaxy"
+args = []
+
+[[lift.commands]]
+name = "inventory"
+exe = "{scie.bindings.venv}/venv/bin/ansible-inventory"
+args = []
+
+[[lift.commands]]
+name = "playbook"
+exe = "{scie.bindings.venv}/venv/bin/ansible-playbook"
+args = []
+
+[[lift.commands]]
+name = "pull"
+exe = "{scie.bindings.venv}/venv/bin/ansible-pull"
+args = []
+
+[[lift.commands]]
+name = "vault"
+exe = "{scie.bindings.venv}/venv/bin/ansible-vault"
+args = []
+
 [[lift.bindings]]
 name = "venv"
 description = "Installs the app into a venv and pre-compiles .pyc"

@@ -1,0 +1,8 @@
+alias ansible-config="SCIE_BOOT=config pantsible"
+alias ansible-console="SCIE_BOOT=console pantsible"
+alias ansible-doc="SCIE_BOOT=doc pantsible"
+alias ansible-galaxy="SCIE_BOOT=galaxy pantsible"
+alias ansible-inventory="SCIE_BOOT=inventory pantsible"
+alias ansible-playbook="SCIE_BOOT=playbook pantsible"
+alias ansible-pull="SCIE_BOOT=pull pantsible"
+alias ansible-vault="SCIE_BOOT=vault pantsible"

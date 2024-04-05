@@ -25,3 +25,24 @@ OR, I could take 20 minutes to create this project which bundles Ansible with a 
 ## How to Upgrade Ansible
 
 Update the `requirements.txt` with the version of interest.
+
+## How to Build
+
+- Install [Pants](https://www.pantsbuild.org/2.19/docs/getting-started/installing-pants)
+- `pants package :pantsible`
+
+## How to Run
+
+Whether you build the binary it locally, or download it from Releases - you should probably put the binary in a directory on your `PATH` (e.g. `/usr/local/bin`, `~/.local/bin`, etc) and maybe re-name it if you're so inclined.
+
+Since the Ansible CLI is built up of subcommands (each command is a small Python shim calling the appropriate module), you can't just use the `pantsible` command other than to use ad-hoc mode. 
+
+[SCIEs](https://github.com/a-scie/jump) have a built-in mechanism to support multiple commands and that is leveraged here, along with the [alias](./alias) script, to replicate the Ansible CLI. Source the alias script (or add it to your shell profile, or use the long-form command) and you can use `ansible`, `ansible-playbook`, `ansible-vault`, etc.
+
+```bash
+SCIE_BOOT=vault pantsible encrypt <file>
+
+# after sourcing the alias file
+
+ansible-vault encrypt <file>
+```
