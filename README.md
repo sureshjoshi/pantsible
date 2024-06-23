@@ -35,14 +35,31 @@ Update the `requirements.txt` with the version of interest.
 
 Whether you build the binary it locally, or download it from Releases - you should probably put the binary in a directory on your `PATH` (e.g. `/usr/local/bin`, `~/.local/bin`, etc) and maybe re-name it if you're so inclined.
 
-Since the Ansible CLI is built up of subcommands (each command is a small Python shim calling the appropriate module), you can't just use the `pantsible` command other than to use ad-hoc mode. 
-
-[SCIEs](https://github.com/a-scie/jump) have a built-in mechanism to support multiple commands and that is leveraged here, along with the [alias](./alias) script, to replicate the Ansible CLI. Source the alias script (or add it to your shell profile, or use the long-form command) and you can use `ansible`, `ansible-playbook`, `ansible-vault`, etc.
-
+Since the Ansible CLI is built up of subcommands (each command is a small Python shim calling the appropriate module), you must select one. Running just bare `pantsible` will net you:
 ```bash
-SCIE_BOOT=vault pantsible encrypt <file>
+$ pantsible
+Error: Could not determine which command to run.
 
-# after sourcing the alias file
+Ansible with an embedded Python interpreter.
 
-ansible-vault encrypt <file>
+Please select from the following boot commands:
+
+ansible
+ansible-config
+ansible-console
+ansible-doc
+ansible-galaxy
+ansible-inventory
+ansible-playbook
+ansible-pull
+ansible-vault
+
+You can select a boot command by setting the SCIE_BOOT environment variable or else by passing it as the 1st argument.
 ```
+
+In other words, `pantsible` is a BusyBox; so you need to structure commands like:
+```bash
+pantsible ansible-vault encrypt <file>
+```
+
+This is not too appealing; but, like a true BusyBox, you can install aliases for all the subcommands with `SCIE=install pantsible --symlink ~/.local/bin` (where `~/.local/bin` can be any element of your `PATH` you desire). After doing so, you can just run `ansible-vault encrypt <file>` like you're accustomed to. See `SCIE=help pantsible` for more info.
