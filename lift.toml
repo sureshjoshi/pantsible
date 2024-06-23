@@ -17,48 +17,50 @@ version = "3.11.8"
 [[lift.files]]
 name = ":pex"
 
+# TODO: Update to pants-plugin required, as "args" are optional
+
 [[lift.commands]]
+name = "ansible"
 exe = "{scie.bindings.venv}/venv/bin/ansible"
-# TODO: Update to pants-plugin required, as "args" are optional 
 args = []
 
 [[lift.commands]]
-name = "config"
+name = "ansible-config"
 exe = "{scie.bindings.venv}/venv/bin/ansible-config"
 args = []
 
 [[lift.commands]]
-name = "console"
+name = "ansible-console"
 exe = "{scie.bindings.venv}/venv/bin/ansible-console"
 args = []
 
 [[lift.commands]]
-name = "doc"
+name = "ansible-doc"
 exe = "{scie.bindings.venv}/venv/bin/ansible-doc"
 args = []
 
 [[lift.commands]]
-name = "galaxy"
+name = "ansible-galaxy"
 exe = "{scie.bindings.venv}/venv/bin/ansible-galaxy"
 args = []
 
 [[lift.commands]]
-name = "inventory"
+name = "ansible-inventory"
 exe = "{scie.bindings.venv}/venv/bin/ansible-inventory"
 args = []
 
 [[lift.commands]]
-name = "playbook"
+name = "ansible-playbook"
 exe = "{scie.bindings.venv}/venv/bin/ansible-playbook"
 args = []
 
 [[lift.commands]]
-name = "pull"
+name = "ansible-pull"
 exe = "{scie.bindings.venv}/venv/bin/ansible-pull"
 args = []
 
 [[lift.commands]]
-name = "vault"
+name = "ansible-vault"
 exe = "{scie.bindings.venv}/venv/bin/ansible-vault"
 args = []
 

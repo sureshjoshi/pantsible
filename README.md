@@ -28,21 +28,53 @@ Update the `requirements.txt` with the version of interest.
 
 ## How to Build
 
-- Install [Pants](https://www.pantsbuild.org/2.19/docs/getting-started/installing-pants)
+- Install [Pants](https://www.pantsbuild.org/2.21/docs/getting-started/installing-pants)
 - `pants package :pantsible`
 
 ## How to Run
 
 Whether you build the binary it locally, or download it from Releases - you should probably put the binary in a directory on your `PATH` (e.g. `/usr/local/bin`, `~/.local/bin`, etc) and maybe re-name it if you're so inclined.
 
-Since the Ansible CLI is built up of subcommands (each command is a small Python shim calling the appropriate module), you can't just use the `pantsible` command other than to use ad-hoc mode. 
-
-[SCIEs](https://github.com/a-scie/jump) have a built-in mechanism to support multiple commands and that is leveraged here, along with the [alias](./alias) script, to replicate the Ansible CLI. Source the alias script (or add it to your shell profile, or use the long-form command) and you can use `ansible`, `ansible-playbook`, `ansible-vault`, etc.
+Since the Ansible CLI is built up of subcommands (each command is a small Python shim calling the appropriate module), you must select one. Running the bare `pantsible` will net you:
 
 ```bash
-SCIE_BOOT=vault pantsible encrypt <file>
+% pantsible
+Error: Could not determine which command to run.
 
-# after sourcing the alias file
+Ansible with an embedded Python interpreter.
 
-ansible-vault encrypt <file>
+Please select from the following boot commands:
+
+ansible
+ansible-config
+ansible-console
+ansible-doc
+ansible-galaxy
+ansible-inventory
+ansible-playbook
+ansible-pull
+ansible-vault
+
+You can select a boot command by setting the SCIE_BOOT environment variable or else by passing it as the 1st argument.
+```
+
+In other words, `pantsible` is a [BusyBox](https://www.busybox.net/); so you need to structure commands like:
+
+```bash
+pantsible ansible-vault encrypt <file>
+
+# or, more verbosely:
+
+SCIE_BOOT=ansible-vault pantsible encrypt <file>
+```
+
+Neither of these approachs is very appealing. Instead, you can one-time install aliases for all the subcommands with `SCIE=install pantsible --symlink DEST_DIR`, where `DEST_DIR` can be any element of your `PATH` you desire (e.g. `/usr/local/bin`, `~/.local/bin`, etc...). See `SCIE=help pantsible` for more info.
+
+After installing the symlinks, we've replicated the [Ansible CLI](https://docs.ansible.com/ansible/latest/command_guide/index.html) and you can use the regular commands:
+
+```bash
+ansible --version
+ansible-playbook --version
+ansible-vault --version
+...
 ```
