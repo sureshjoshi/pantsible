@@ -6,15 +6,19 @@ pex_binary(
         ":reqs#ansible-core",
     ],
     include_tools=True,
-    platforms=[
-        "linux-x86_64-cp-311-cp311",
-        "macosx-13.3-arm64-cp-311-cp311",
+    complete_platforms=[
+        ":macos-aarch64-py313"
     ],
 )
 
 scie_binary(
     name="pantsible",
     dependencies=[":pex"],
-    platforms=["linux-x86_64", "macos-aarch64"],
+    platforms=["macos-aarch64"],
     lift="lift.toml",
+)
+
+file(
+    name="macos-aarch64-py313",
+    source="macos-aarch64-py313.json",
 )

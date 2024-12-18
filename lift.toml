@@ -3,7 +3,7 @@ name = "pantsible"
 description = "Ansible with an embedded Python interpreter."
 platforms = [
 #    "linux-aarch64",
-    "linux-x86_64",
+#    "linux-x86_64",
     "macos-aarch64",
 #    "macos-x86_64",
 ]
@@ -11,8 +11,8 @@ platforms = [
 [[lift.interpreters]]
 id = "cpython"
 provider = "PythonBuildStandalone"
-release = "20240224"
-version = "3.11.8"
+release = "20241206"
+version = "3.13.1"
 
 [[lift.files]]
 name = ":pex"

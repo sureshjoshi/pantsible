@@ -1,8 +1,8 @@
 [GLOBAL]
-pants_version = "2.21.0"
+pants_version = "2.25.0.dev2"
 pantsd = true
 pants_ignore_use_gitignore = false
-plugins = ["robotpajamas.pants.scie==0.0.3"]
+plugins = ["robotpajamas.pants.scie==0.0.5"]
 
 backend_packages = [
     "pants.backend.python",
@@ -12,7 +12,7 @@ build_patterns = ["BUILD.pants", "BUILD"]
 
 [python]
 enable_resolves = true
-interpreter_constraints = ["==3.11.*"]
+interpreter_constraints = ["==3.13.*"]
 
 [python.resolves]
 python-default = "build-support/lockfiles/python-default.lock"
