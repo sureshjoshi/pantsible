@@ -7,18 +7,21 @@ pex_binary(
     ],
     include_tools=True,
     complete_platforms=[
-        ":macos-aarch64-py313"
+        ":platform-files",
     ],
 )
 
 scie_binary(
     name="pantsible",
     dependencies=[":pex"],
-    platforms=["macos-aarch64"],
+    platforms=["linux-x86_64", "macos-aarch64"],
     lift="lift.toml",
 )
 
-file(
-    name="macos-aarch64-py313",
-    source="macos-aarch64-py313.json",
+files(
+    name="platform-files",
+    sources=[
+        "linux-x86_64-py314.json",
+        "macos-aarch64-py314.json",
+    ],
 )

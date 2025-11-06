@@ -28,7 +28,7 @@ Update the `requirements.txt` with the version of interest.
 
 ## How to Build
 
-- Install [Pants](https://www.pantsbuild.org/2.21/docs/getting-started/installing-pants)
+- Install [Pants](https://www.pantsbuild.org/stable/docs/getting-started/installing-pants)
 - `pants package :pantsible`
 
 ## How to Run
