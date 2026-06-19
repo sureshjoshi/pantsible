@@ -21,6 +21,8 @@ jobs:
   build:
     name: Checkout and build
     runs-on: macos-latest
+    env:
+      PANTS_CONFIG_FILES: pants.ci.toml
     outputs:
       artifact-name: ${{ steps.define-vars.outputs.artifact-name }}
       artifact-path: ${{ steps.define-vars.outputs.artifact-path }}
