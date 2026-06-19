@@ -20,7 +20,7 @@ defaults:
 jobs:
   build:
     name: Checkout and build
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     outputs:
       artifact-name: ${{ steps.define-vars.outputs.artifact-name }}
       artifact-path: ${{ steps.define-vars.outputs.artifact-path }}
