@@ -40,9 +40,12 @@ jobs:
           gha-cache-key: v0
           named-caches-hash: ${{ hashFiles('build-support/lockfiles/*.lock') }}
 
-      - name: Bootstrap Pants and create packages
+      - name: Bootstrap Pants
         run: |
           pants --version
+
+      - name: Create packages
+        run: |
           pants package ::
 
       - name: Upload artifacts
