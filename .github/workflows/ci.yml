@@ -45,6 +45,9 @@ jobs:
           pants --version
 
       - name: Create packages
+        env:
+          # Might be required to download PBS
+          GH_TOKEN: ${{ github.token }}
         run: |
           pants package ::
 
