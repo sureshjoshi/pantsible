@@ -31,7 +31,7 @@ jobs:
       - name: Define output vars
         id: define-vars
         run: |
-          echo "artifact-name=pantsible" >> "$GITHUB_OUTPUT"
+          echo "artifact-name=zipped-pantsible" >> "$GITHUB_OUTPUT"
           echo "artifact-path=dist/pantsible-*" >> "$GITHUB_OUTPUT"
 
       - uses: pantsbuild/actions/init-pants@8c037ac70a2cf031e8278af07d1d04732177684d
@@ -55,4 +55,4 @@ jobs:
         with:
           name: ${{ steps.define-vars.outputs.artifact-name }}
           path: ${{ steps.define-vars.outputs.artifact-path }}
-          retention-days: 7
+          retention-days: 3

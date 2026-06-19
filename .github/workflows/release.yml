@@ -58,17 +58,17 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v8
         with:
-          name: ${{ needs.run-ci.outputs.artifact-name }}
+          merge-multiple: true
+          path: dist/
 
-      - name: Generate
+      - name: Generate GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_VERSION: ${{ steps.determine-version.outputs.release-version }}
-          ARTIFACT_PATH: ${{ needs.run-ci.outputs.artifact-path }}
         run: |
           gh release create \
             "${RELEASE_VERSION}" \
-            "${ARTIFACT_PATH}" \
+            dist/pantsible-* \
             --fail-on-no-commits \
             --generate-notes \
             --repo sureshjoshi/pantsible
@@ -76,5 +76,4 @@ jobs:
       - name: Generate ${{ needs.determine-version.outputs.release-version }} build provenance attestations
         uses: actions/attest@v4
         with:
-          subject-path: ${{ needs.run-ci.outputs.artifact-path }}
-
+          subject-path: dist/pantsible-*
