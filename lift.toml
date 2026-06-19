@@ -8,11 +8,18 @@ platforms = [
 #    "macos-x86_64",
 ]
 
+#[lift.ptex]
+#version = "1.7.0"
+
+#[lift.scie_jump]
+#version = "1.11.2"
+
 [[lift.interpreters]]
 id = "cpython"
+#flavor = "install_only_stripped"
 provider = "PythonBuildStandalone"
-release = "20251031"
-version = "3.14.0"
+release = "20260610"
+version = "3.14.6"
 
 [[lift.files]]
 name = ":pex"

@@ -1,11 +1,12 @@
 [GLOBAL]
-pants_version = "2.31.0.dev0"
+pants_version = "2.32.0"
 pantsd = true
 pants_ignore_use_gitignore = false
 plugins = ["robotpajamas.pants.scie==0.1.1"]
 
 backend_packages = [
     "pants.backend.python",
+    "pants.backend.python.providers.experimental.python_build_standalone",
     "experimental.scie"
 ]
 build_patterns = ["BUILD.pants", "BUILD"]
@@ -18,6 +19,15 @@ separate_lockfile_metadata_file = true
 
 [python.resolves]
 python-default = "build-support/lockfiles/python-default.lock"
+
+[pex-cli]
+version = "v2.96.0"
+known_versions = [
+    "v2.96.0|linux_arm64|7d51fc3c979f94ff4898f4d3ef8405b34a5988ffbee6ec4627946cfda154e0fc|5125572",
+    "v2.96.0|linux_x86_64|7d51fc3c979f94ff4898f4d3ef8405b34a5988ffbee6ec4627946cfda154e0fc|5125572",
+    "v2.96.0|macos_arm64|7d51fc3c979f94ff4898f4d3ef8405b34a5988ffbee6ec4627946cfda154e0fc|5125572",
+    "v2.96.0|macos_x86_64|7d51fc3c979f94ff4898f4d3ef8405b34a5988ffbee6ec4627946cfda154e0fc|5125572",
+]
 
 [anonymous-telemetry]
 enabled = false

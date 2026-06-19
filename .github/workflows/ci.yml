@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_call:
+    outputs:
+      artifact-name:
+        description: The name of the uploaded artifacts
+        value: ${{ jobs.build.outputs.artifact-name }}
+      artifact-path:
+        description: The path of the uploaded artifacts
+        value: ${{ jobs.build.outputs.artifact-path }}
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    name: Checkout and build
+    runs-on: macos-latest
+    outputs:
+      artifact-name: ${{ steps.define-vars.outputs.artifact-name }}
+      artifact-path: ${{ steps.define-vars.outputs.artifact-path }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Define output vars
+        id: define-vars
+        run: |
+          echo "artifact-name=pantsible" >> "$GITHUB_OUTPUT"
+          echo "artifact-path=dist/pantsible-*" >> "$GITHUB_OUTPUT"
+
+      - uses: pantsbuild/actions/init-pants@8c037ac70a2cf031e8278af07d1d04732177684d
+        with:
+          # cache0 makes it easy to bust the cache if needed
+          gha-cache-key: v0
+          named-caches-hash: ${{ hashFiles('build-support/lockfiles/*.lock') }}
+
+      - name: Bootstrap Pants
+        run: |
+          pants --version
+
+      - name: Create packages
+        run: |
+          pants package ::
+
+      - name: Upload artifacts
+        id: upload-artifact
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{ steps.define-vars.outputs.artifact-name }}
+          path: ${{ steps.define-vars.outputs.artifact-path }}
+          retention-days: 7
