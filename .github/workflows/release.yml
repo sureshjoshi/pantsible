@@ -74,6 +74,6 @@ jobs:
             --repo sureshjoshi/pantsible
       
       - name: Generate ${{ needs.determine-version.outputs.release-version }} build provenance attestations
-        uses: actions/attest@v4
+        uses: actions/attest@v4.1.0
         with:
           subject-path: dist/pantsible-*
